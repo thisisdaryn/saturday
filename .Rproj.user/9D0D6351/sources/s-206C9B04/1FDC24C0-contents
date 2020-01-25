@@ -1,0 +1,398 @@
+---
+title: "Subsetting data using R"
+subtitle: "📈📊📉"
+author: "Daryn Ramsden"
+institute: ""
+date: "last updated: `r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    chakra: libs/remark.js
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+### A note 
+
+These slides assume your working directory contains the *data* folder that contains the following files:
+
+  - *ChicagoEmployees.csv*
+
+
+
+
+---
+### Reading in data
+
+We will use the **read_csv** function of the <tt>readr<package></tt>. 
+
+**read_csv** is an alternative to the built-in function **read.csv**. 
+
+It has some smarter default settings than read.csv
+
+Also, it gives info about the names and data types of columns in the data set (which can sometimes be annoying) 
+
+---
+#### Using **read_csv** 
+
+
+```{r}
+#install.packages("readr") # you may need to run this first if you ha
+library(readr)
+chicago <- read_csv("data/ChicagoEmployees.csv")
+```
+
+
+---
+### Getting summary information
+
+How big is the loans data set? 
+--
+```{r}
+dim(chicago)
+```
+--
+What are the names of the columns?
+```{r}
+names(chicago)
+```
+--
+You can use **summary** or **View** as well to get more info. 
+
+
+
+---
+### Selecting only some columns
+
+In base R, **[]** is used to subset data. For a 2d data structure, we have row conditions and column conditions separated by a comma inside the **[]**.
+--
+
+
+For example, we can select the first 5 rows and the first 4 columns of the *loans* data frame:
+
+--
+```{r}
+loans[c(1:5),c(1:4)]
+```
+
+
+
+---
+### Selecting columns by name
+
+It's often more practical to select columns by name however. The following code:
+  - keeps only the *homeownership*, *loan_amount*, *loan_purpose*, and *interest_rate* columns
+  - displays the dimensions of the smaller data set
+--
+```{r}
+loans2 <- loans[, c("homeownership", "loan_amount", 
+                    "loan_purpose", "interest_rate")]
+dim(loans2)
+```
+--
+Note that there was no row constraint in the first line as we were intending to keep all rows of the data.
+
+---
+### Rows can also be selected using logical operators
+
+How do we select all the rows where the interest rate is lower than 7%?
+--
+
+
+The code below:
+  - keeps only the rows where the interest rate is lower than 7% 
+  - displays the first few rows
+--
+```{r}
+low_interest <- loans2[loans2$interest_rate < 7, ]
+head(low_interest)
+```
+--
+Note that there is no column constraint as we are keeping all the columns.
+
+
+---
+### What are the other logical operators that can be used in filtering rows?
+
+The previous slide made use of **<**, multiple other operators are available for filtering: 
+--
+```{r echo = FALSE}
+Operator <- c( "==", "!=", "<", "<=",  ">", ">=", "|", "&", "!")
+Meaning <- c("equal", "not equal", 
+             "less than", "less than or equal to", 
+              "greater than", "greater than or equal to",
+             "Or: at least one of the expressions is true", 
+             "And: Both expressions are true", 
+             "Not: the expression is not true" )
+optable <- data.frame(Operator, Meaning)
+kableExtra::kable(optable)
+```
+
+
+
+
+---
+### Some examples 
+
+How would we get loans that meet both of the following:
+  - have a loan amount > $20,000
+  - interest rate > 12% 
+--
+
+```{r}
+df <- loans2[(loans2$loan_amount > 20000) & 
+               (loans2$interest_rate > 12), ]
+head(df)
+```
+
+
+---
+### Another example
+
+How would we get loans that meet either of the following:
+  - the purpose is *credit_card* 
+  - the home ownership status is *RENT* 
+  
+--
+```{r}
+df2 <- loans2[loans2$loan_purpose == "credit_card" | 
+                loans2$homeownership == "RENT", ] 
+head(df2)
+```
+
+  
+
+---
+### Using **$** to reference columns 
+
+Another means of subsetting data that we would have seen before is the **$** 
+--
+```{r fig.height=5}
+hist(loans$interest_rate)
+```
+
+
+
+--
+
+
+We have been using it to extract single columns from the data
+
+
+---
+### **$** can be used to create new columns
+
+We can also create new columns in the data set. 
+
+
+For example, here's a new column that says whether or not the interest rate on a loan is greater than 10%:
+--
+```{r}
+loans2$ir_gt10 <- ifelse(loans2$interest_rate > 10, TRUE, FALSE)
+head(loans2)
+```
+
+
+---
+### Explaining **ifelse**
+
+The **ifelse** function is very handy and has three arguments:
+
+- an expression to evaluate
+- a result if the expression is TRUE
+- a result if the expression is FALSE
+
+---
+### dplyr: An alternative means for subsetting data 
+
+Subsetting in base R can involve a lot of typing.
+
+--
+
+The *dplyr* package contains useful data manipulation functions to addresss this. 
+
+--
+
+Installing **dplyr** 
+
+--
+```{r eval = FALSE}
+install.packages("dplyr")
+```
+--
+
+Now getting access to the functions:
+```{r message = FALSE, warning = FALSE}
+library(dplyr)
+```
+
+
+
+---
+### 5 main dplyr functions
+
+There are 2 main functions we will use for subsetting data:
+- **filter**: to choose rows
+- **select**: to choose columns
+
+Other functions, we will introduce: 
+- **arrange**: to sort
+- **mutate**: to create new columns
+- **summarise** and **group_by**: to aggregate data 
+
+
+---
+### General rules about usage 
+
+Key things to remember: 
+- **the first argument/input to any function in dplyr, is the data frame** 
+
+
+- the other inputs depend on the task you're carrying out  
+
+---
+### Example: Using dplyr::filter to select rows
+
+
+How would we get loans that meet either of the following:
+  - the purpose is *credit_card* 
+  - the home ownership status is *RENT* 
+--
+```{r}
+library(dplyr)
+df4 <- filter(loans2, loan_purpose == "credit_card" | 
+                homeownership == "RENT")
+head(df4)
+```
+
+---
+### Example 2: Using dplyr::filter to select rows
+
+How would we get loans that meet both of the following:
+  - have a loan amount > $20,000
+  - interest rate > 12% 
+
+--
+```{r}
+library(dplyr)
+df5 <- filter(loans2, loan_amount > 20000, interest_rate > 12)
+head(df5)
+```
+
+
+---
+### Example 3: Using dplyr::select to select certain columns
+
+Going back to the original *loans* data set, we will select only the following columns:
+- *homeownership*
+- *loan_amount*
+- *loan_purpose*
+- *interest_rate*
+--
+```{r}
+df6 <- select(loans, homeownership, loan_amount, 
+                    loan_purpose, interest_rate)
+head(df6)
+```
+
+
+---
+### Example 4: Using dplyr::mutate to add columns
+
+Now to add a column indicating if the interest rate is greater than 10% using **mutate**
+--
+```{r}
+df7 <- mutate(df6, ir_gt10 = ifelse(interest_rate > 10, 
+                                    TRUE, FALSE))
+head(df7)
+```
+
+
+
+---
+### Example 5: Using dplyr::arrange to sort the data
+
+If we want to sort by *loan_amount*
+--
+```{r}
+df8 <- arrange(df7, loan_amount)
+head(df8)
+```
+
+--
+
+
+The default sort is in ascending order 
+
+
+---
+### Example 6: sorting data in descending order
+
+We can set multiple columns to sort by (and sort in descending order as well):
+--
+```{r}
+df9 <- arrange(df7, desc(loan_amount), desc(interest_rate))
+```
+
+
+---
+### Aggregating data 
+
+Data aggregation in *dplyr* typically involves using the **group_by** and **summarise** functions.
+--
+- First use group_by to specify how you want to group the data 
+
+
+- apply summarise to aggregate the data
+
+---
+### Example 7: Using summarise and group_by
+
+First, we group the data
+--
+```{r}
+grouped_data <- group_by(df7, loan_purpose)
+head(grouped_data)
+```
+--
+The grouped data frame looks the same but R has added extra information that will be used by **summarise** (or other functions)
+
+
+---
+### Example 7 continued: summarising grouped data
+
+Now we can use **summarise** with the grouped data:
+--
+```{r}
+agg_data <- summarise(grouped_data, total_amt = sum(loan_amount), 
+                      num_loans = n(),
+                      high_int_pct = mean(ir_gt10)*100)
+
+agg_data
+```
+
+---
+### Example 7 continued: sorting the aggregated data 
+
+
+And what if we wanted to order the loan types by the total loan amount for each? 
+
+--
+```{r}
+sorted_data <- arrange(agg_data, desc(total_amt))
+sorted_data
+
+```
+
+
+
+
+
+
+
+
+
