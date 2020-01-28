@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1579964926639.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3581294001",
+    "id" : "49D5B43A",
+    "lastKnownWriteTime" : 1579973638,
+    "last_content_update" : 1579973638849,
+    "path" : "/Volumes/TERBIUM/saturday/data/#01_EDA_and_Subsetting_Data.R",
+    "project_path" : "data/#01_EDA_and_Subsetting_Data.R",
+    "properties" : {
+        "cursorPosition" : "42,58",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

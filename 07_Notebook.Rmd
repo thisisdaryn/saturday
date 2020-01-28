@@ -1,0 +1,117 @@
+---
+title: "Data Visualisation with ggplot2"
+output:
+  html_document:
+    df_print: paged
+---
+
+
+# ggplot components 
+
+A plot made using ggplot2 requires the following components:
+
+  - data
+  - an aesthetic/mapping
+  - a geometry
+
+
+ 
+ 
+```{r}
+library(ggplot2) # imports the package
+### make the scatterplot
+
+ggplot(data = iris, aes(x = Petal.Length, y = Sepal.Length,
+                        colour = Species)) + 
+  geom_point()
+```
+
+```{r}
+ggplot(data = iris, aes(x = Petal.Length, fill = Species)) + geom_histogram()
+```
+
+```{r}
+ggplot(data = iris, aes(x = Petal.Length, fill = Species)) + geom_histogram(colour = "black")
+```
+
+```{r}
+ggplot(data = iris, aes(x = Petal.Length, fill = Species)) + geom_histogram() + facet_wrap(~Species, ncol = 1)
+```
+
+```{r}
+ggplot(data = iris, aes(x = Species, y = Petal.Length)) +
+  geom_boxplot() + geom_point() + theme_bw() 
+```
+
+
+### Comparing the MPGs of cars with different transmission types
+```{r}
+library(workshop)
+
+ggplot(data = cars2018, aes(x = Cylinders, y = MPG, shape = Transmission)) + 
+  geom_point()
+
+```
+
+```{r}
+ggplot(data = cars2018, aes(x = Transmission, y = MPG)) + 
+  geom_boxplot() + facet_wrap(~Fuel, ncol = 1, scales = "free_y")
+```
+
+###
+
+
+```{r}
+library(dplyr)
+library(tidyr)
+
+tests <- separate(lara, Match, into = c("Format", "Number"), sep = " # ") %>%
+  filter(Format == "Test")
+  
+ggplot(data = tests, aes(x = Runs)) + geom_histogram(fill = "blue", colour = 
+                                                       "black")
+```
+
+```{r}
+ggplot(data = tests, aes(x = Opp, y = Runs)) + geom_bar(stat = "identity", 
+                                                        fill = "green", 
+                                                        colour = "darkgreen")
+```
+```{r}
+df <- apple
+df$Date <- paste(df$Year, df$Quarter, sep = "-")
+
+ggplot(data = df, aes(x = Date, y = Revenue, group = Product, 
+                      colour = Product)) + geom_line() + geom_point() + 
+  theme(axis.text.x = element_text(angle = 90), 
+        plot.title = element_text(size = 16, face = "bold", hjust = 0.5)) + 
+  ggtitle("Apple Revenue")
+
+
+```
+```{r}
+df <- apple
+df$Date <- paste(df$Year, df$Quarter, sep = "-")
+
+ggplot(data = df, aes(x = Date, y = Revenue, group = Product, 
+                      colour = Product)) + geom_line() + geom_point()
+```
+
+
+```{r}
+library(lubridate)
+
+
+main_depts <- names(sort(table(nyc311$Agency), decreasing = TRUE)[1:4])
+
+df <- nyc311 %>% separate(Created, into = c("Day", "Time"), sep = " ") %>% 
+  mutate(Day = mdy(Day)) %>% group_by(Agency, Borough, Day) %>% summarise(Calls = n()) %>% 
+  filter(Agency %in% main_depts)
+
+ggplot(data = df, aes(x = Day, y = Calls)) + geom_line() + facet_grid(Agency~Borough)
+```
+```{r}
+ggplot(data = df, aes(x = Day, y = Calls)) + geom_line() + facet_grid(Borough~Agency)
+```
+
+

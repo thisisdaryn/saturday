@@ -1,0 +1,21 @@
+---
+title: "Reading from a spreadsheet and making a map"
+output:
+  html_document:
+    df_print: paged
+---
+
+
+## Read in the spreadsheet with 
+
+
+
+```{r}
+library(readxl)
+voter_turnout <- readxl::read_xlsx("data/2018_Voter_Turnout_Statistics_FINAL.xlsx", sheet = "2018 Voter Turnout Statistics")
+```
+
+
+
+
+

@@ -1,0 +1,33 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1580052937406.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "F0225E9F",
+    "lastKnownWriteTime" : 4294967300,
+    "last_content_update" : 1580052937406,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "F71E799D",
+        "caption" : "highrises",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=highrises&cache_key=F71E799D",
+        "displayedObservations" : "27403",
+        "environment" : "",
+        "expression" : "highrises",
+        "object" : "highrises",
+        "preview" : "0",
+        "totalObservations" : "27403",
+        "variables" : "10"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 13,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

@@ -1,0 +1,33 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1580047816923.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "4DEF7CAA",
+    "lastKnownWriteTime" : 4484542716,
+    "last_content_update" : 1580047816923,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "33A3AC63",
+        "caption" : "hpd",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=hpd&cache_key=33A3AC63",
+        "displayedObservations" : 14866,
+        "environment" : "",
+        "expression" : "hpd",
+        "object" : "hpd",
+        "preview" : 0,
+        "totalObservations" : 14866,
+        "variables" : 12
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

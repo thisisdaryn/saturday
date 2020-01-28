@@ -1,0 +1,33 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1579973868528.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "B9897B5E",
+    "lastKnownWriteTime" : 4294967297,
+    "last_content_update" : 1579973868528,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "DF01B5ED",
+        "caption" : "nyc311",
+        "contentUrl" : "grid_resource/gridviewer.html?env=package%3Aworkshop&obj=nyc311&cache_key=DF01B5ED",
+        "displayedObservations" : "76731",
+        "environment" : "package:workshop",
+        "expression" : "nyc311",
+        "object" : "nyc311",
+        "preview" : "0",
+        "totalObservations" : "76731",
+        "variables" : "11"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

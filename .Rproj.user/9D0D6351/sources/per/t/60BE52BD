@@ -1,0 +1,33 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1580062025523.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "60BE52BD",
+    "lastKnownWriteTime" : 4613937818241073156,
+    "last_content_update" : 1580062025523,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "46AB5624",
+        "caption" : "lara",
+        "contentUrl" : "grid_resource/gridviewer.html?env=package%3Aworkshop&obj=lara&cache_key=46AB5624",
+        "displayedObservations" : 561,
+        "environment" : "package:workshop",
+        "expression" : "lara",
+        "object" : "lara",
+        "preview" : 0,
+        "totalObservations" : 561,
+        "variables" : 8
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 18,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

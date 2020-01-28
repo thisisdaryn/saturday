@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1580067982515.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2389148952",
+    "id" : "A9BFE21",
+    "lastKnownWriteTime" : 1579878040,
+    "last_content_update" : 1579878040,
+    "path" : "/Volumes/TERBIUM/saturday/data/ChicagoEmployees.csv",
+    "project_path" : "data/ChicagoEmployees.csv",
+    "properties" : {
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 23,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "text"
+}

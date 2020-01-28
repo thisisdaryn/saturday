@@ -1,0 +1,33 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1580054311497.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "910D8035",
+    "lastKnownWriteTime" : 140239339289312,
+    "last_content_update" : 1580054311497,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "52AAF846",
+        "caption" : "violation_rpt1",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=violation_rpt1&cache_key=52AAF846",
+        "displayedObservations" : "2711",
+        "environment" : "",
+        "expression" : "violation_rpt1",
+        "object" : "violation_rpt1",
+        "preview" : "0",
+        "totalObservations" : "2711",
+        "variables" : "2"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 14,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

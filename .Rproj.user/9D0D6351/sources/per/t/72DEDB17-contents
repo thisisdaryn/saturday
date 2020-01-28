@@ -1,0 +1,90 @@
+---
+title: "Reading from a spreadsheet and making a map"
+output:
+  html_document:
+    df_print: paged
+---
+
+
+#### Read in the spreadsheet with voter turnout statistics for the 2018 Toronto election
+
+
+
+```{r}
+library(readxl)
+voter_turnout <- readxl::read_xlsx("data/2018_Voter_Turnout_Statistics_FINAL.xlsx", sheet = "2018 Voter Turnout Statistics")
+```
+
+
+
+### Using the sf library to read in the shapefile 
+
+```{r message = FALSE}
+library(sf)
+toronto_map <- read_sf("data/voting-subdivisions-2018-wgs84/VOTING_SUBDIVISION_2018_WGS84.shp")
+```
+
+
+#### Combining the ward and sub to get the area name in a single variable
+
+```{r warning = FALSE, message = FALSE}
+voter_turnout$Ward <- sprintf("%02s", voter_turnout$Ward)
+voter_turnout$Sub <- sprintf("%03s", voter_turnout$Sub)
+voter_turnout$AREA_NAME <- paste(voter_turnout$Ward, voter_turnout$Sub, sep = "")
+```
+
+
+#### Joining the turnout dataset to the shapefile 
+
+```{r message = FALSE, warning = FALSE}
+library(dplyr)
+toronto_map <- left_join(toronto_map, voter_turnout, by = "AREA_NAME")
+```
+
+```{r}
+library(ggplot2)
+ggplot(data = toronto_map) + geom_sf(aes(fill = `% Voted`))
+```
+
+```{r}
+ggplot(data = toronto_map) + geom_sf(aes(fill = `% Voted`)) + 
+  scale_fill_gradient2()
+```
+
+
+
+
+
+### Calculating quintiles of the voter turnout distribution
+
+
+```{r}
+quantiles <- quantile(toronto_map$`% Voted`, c(0.2,0.4,0.6,0.8))
+quantiles
+```
+
+### Creating a categorical variable corresponding to the quintiles
+
+```{r}
+toronto_map <- mutate(toronto_map, turnout = if_else(`% Voted` < 0.28, "< 28%",
+                                        if_else(`% Voted` < 0.32, "28 - 32%", 
+                                                if_else(`% Voted` < 0.36, "32 - 36%",
+                                                        if_else(`% Voted` < .42, "36 - 42%", "42%+")))))
+```
+
+
+#### Making a first map with the categorical variable 
+
+```{r}
+ggplot(data = toronto_map) + geom_sf(aes(fill = turnout))  
+```
+
+#### Changing the theme to minimal
+
+```{r}
+ggplot(data = toronto_map) + geom_sf(aes(fill = turnout)) + theme_bw() + 
+  ggtitle("2018 Toronto Election")
+```
+
+
+

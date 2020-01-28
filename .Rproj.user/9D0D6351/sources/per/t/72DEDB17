@@ -1,0 +1,27 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1580172904458.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2754579802",
+    "id" : "72DEDB17",
+    "lastKnownWriteTime" : 1580176188,
+    "last_content_update" : 1580176188998,
+    "path" : "/Volumes/TERBIUM/saturday/SpreadsheetInput_and_mapping.Rmd",
+    "project_path" : "SpreadsheetInput_and_mapping.Rmd",
+    "properties" : {
+        "chunk_output_type" : "inline",
+        "cursorPosition" : "8,4",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 24,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

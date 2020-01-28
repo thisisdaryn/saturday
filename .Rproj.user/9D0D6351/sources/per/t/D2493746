@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1580066575623.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2219775431",
+    "id" : "D2493746",
+    "lastKnownWriteTime" : 1580067042,
+    "last_content_update" : 1580067044353,
+    "path" : "/Volumes/TERBIUM/saturday/#09_dplyr_joins.R",
+    "project_path" : "#09_dplyr_joins.R",
+    "properties" : {
+        "cursorPosition" : "10,0",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 22,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,33 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1580061696672.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "964371",
+    "lastKnownWriteTime" : 0,
+    "last_content_update" : 1580061696672,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "EA60D13A",
+        "caption" : "cars2018",
+        "contentUrl" : "grid_resource/gridviewer.html?env=package%3Aworkshop&obj=cars2018&cache_key=EA60D13A",
+        "displayedObservations" : 1144,
+        "environment" : "package:workshop",
+        "expression" : "cars2018",
+        "object" : "cars2018",
+        "preview" : 0,
+        "totalObservations" : 1144,
+        "variables" : 15
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 17,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}
